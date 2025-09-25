@@ -1,0 +1,5 @@
+{
+  "timeoutMs": 30000,
+  "memoryLimitMB": 64,
+  "securityLevel": "strict"
+}

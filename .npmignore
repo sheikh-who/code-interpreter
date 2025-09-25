@@ -1,0 +1,12 @@
+coverage/
+dist/
+docs/
+examples/
+scripts/
+config/
+test/
+monitoring/
+docker/
+k8s/
+tools/
+.vscode/

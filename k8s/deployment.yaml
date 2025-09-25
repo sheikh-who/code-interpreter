@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-interpreter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-interpreter
+  template:
+    metadata:
+      labels:
+        app: code-interpreter
+    spec:
+      containers:
+        - name: app
+          image: code-interpreter:latest
+          ports:
+            - containerPort: 3000

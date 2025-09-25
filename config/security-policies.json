@@ -1,0 +1,6 @@
+{
+  "strict": {
+    "blockedPatterns": ["require", "process.", "eval"],
+    "maxCodeLength": 10000
+  }
+}
