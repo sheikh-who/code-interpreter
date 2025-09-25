@@ -1,0 +1,160 @@
+{
+  "name": "@sheikh-who/code-interpreter",
+  "version": "2.0.0",
+  "description": "Build amazing things with secure code execution - A powerful, production-ready JavaScript code interpreter",
+  "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src/",
+    "types/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "start": "node examples/basic-usage.js",
+    "dev": "nodemon examples/basic-usage.js",
+    "test": "npm run test:unit && npm run test:integration && npm run test:security",
+    "test:unit": "jest test/unit/ --coverage",
+    "test:integration": "jest test/integration/",
+    "test:security": "node test/security/security-tests.js",
+    "test:benchmark": "node test/benchmarks/performance.bench.js",
+    "test:watch": "jest --watch",
+    "build": "npm run build:docs && npm run build:types",
+    "build:docs": "jsdoc -c jsdoc.conf.json -d docs/api/",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir types/",
+    "lint": "eslint src/ test/ examples/",
+    "lint:fix": "eslint src/ test/ examples/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\" \"examples/**/*.js\"",
+    "security:audit": "npm audit && node scripts/security-check.js",
+    "security:scan": "semgrep --config=auto src/",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "prepare": "husky install",
+    "release": "semantic-release",
+    "docs:serve": "http-server docs/ -p 8080",
+    "examples:all": "node scripts/run-all-examples.js",
+    "clean": "rimraf coverage/ docs/api/ types/ .nyc_output/",
+    "docker:build": "docker build -t sheikh-who/code-interpreter .",
+    "docker:test": "docker run --rm sheikh-who/code-interpreter npm test"
+  },
+  "keywords": [
+    "code-interpreter",
+    "sandbox",
+    "vm",
+    "secure-execution",
+    "javascript-runner",
+    "worker-threads",
+    "code-execution",
+    "eval-alternative",
+    "safe-eval",
+    "isolated-execution",
+    "code-sandbox",
+    "javascript-sandbox",
+    "secure-vm",
+    "code-runner",
+    "script-runner"
+  ],
+  "author": {
+    "name": "Sheikh Who",
+    "email": "sheikh.who@example.com",
+    "url": "https://github.com/sheikh-who"
+  },
+  "contributors": [
+    {
+      "name": "Sheikh Who",
+      "email": "sheikh.who@example.com",
+      "url": "https://github.com/sheikh-who"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "events": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-security": "^1.7.1",
+    "husky": "^8.0.3",
+    "jest": "^29.5.0",
+    "jsdoc": "^4.0.2",
+    "lint-staged": "^13.2.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7",
+    "rimraf": "^4.4.1",
+    "semantic-release": "^20.1.3",
+    "semgrep": "^1.15.0",
+    "supertest": "^6.3.3",
+    "typescript": "^5.0.2",
+    "http-server": "^14.1.1"
+  },
+  "peerDependencies": {
+    "express": "^4.18.0"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheikh-who/code-interpreter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sheikh-who/code-interpreter/issues"
+  },
+  "homepage": "https://github.com/sheikh-who/code-interpreter#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/sheikh-who"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js",
+      "!src/examples/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/test/**/*.test.js",
+      "**/test/**/*.spec.js"
+    ],
+    "verbose": true
+  },
+  "nodemonConfig": {
+    "watch": ["src/", "examples/"],
+    "ext": "js,json",
+    "ignore": ["test/", "docs/", "coverage/"]
+  }
+}
